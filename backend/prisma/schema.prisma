@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  albums    Album[]
+}
+
+model Album {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  coverImage  String?
+  isPublic    Boolean  @default(false)
+  accessCode  String?  @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  ownerId     String
+  owner       User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  photos      Photo[]
+}
+
+model Photo {
+  id         String   @id @default(uuid())
+  url        String
+  publicId   String   // Cloudinary public_id, needed to delete from cloud
+  caption    String?
+  isFavorite Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  albumId    String
+  album      Album    @relation(fields: [albumId], references: [id], onDelete: Cascade)
+}

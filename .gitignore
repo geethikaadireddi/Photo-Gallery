@@ -3,3 +3,10 @@ node_modules/
 dist/
 build/
 .DS_Store
+*.log
+.cursor/
+.devin/
+.claude/
+.windsurf/
+.agents/
+skills-lock.json

@@ -7,16 +7,19 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "prisma skills sync || exit 0",
     "dev": "nodemon src/server.js",
-  "start": "node src/server.js",
-  "prisma:migrate": "prisma migrate dev",
-  "prisma:studio": "prisma studio"
+    "start": "node src/server.js",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "contract:emit": "prisma contract emit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@prisma/client": "^7.10.0",
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.9.1",
+    "@prisma/orm-postgres": "^8.0.0-rc.8",
     "bcryptjs": "^3.0.3",
     "cloudinary": "^1.41.3",
     "cors": "^2.8.6",
@@ -25,9 +28,12 @@
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.3.0",
     "multer-storage-cloudinary": "^4.0.0",
-    "prisma": "^8.0.0-rc.12"
+    "pg": "^8.23.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "@prisma/cli-engine": "^0.2.3",
+    "@types/node": "^26.4.0",
+    "nodemon": "^3.1.14",
+    "prisma": "^7.9.1"
   }
 }
